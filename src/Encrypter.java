@@ -45,6 +45,7 @@ public class Encrypter {
     		}
     	}
     	String result = text + "\n\nHeres the Encrypted Text:\n" + encryptedText;
+    	writeFile(result, encryptedFilePath);
     	this.encrypted = encryptedText;
     }
 
