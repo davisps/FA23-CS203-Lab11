@@ -34,13 +34,18 @@ public class Encrypter {
      */
     public void encrypt(String inputFilePath, String encryptedFilePath) throws Exception {
         //TODO: Call the read method, encrypt the file contents, and then write to new file
-    	String text = readFile(inputFilePath);
+    	String text = readFile(inputFilePath).toLowerCase();
     	String encryptedText = "";
     	for(char c : text.toCharArray()) {
     		if(Character.isLetter(c)) {
-    			
+    			char encryptedChar = (char)((c + shift - 'a')% 26 + 'a');
+    			encryptedText += encryptedChar;
+    		}else {
+    			encryptedText += c;
     		}
     	}
+    	String result = text + "\n\nHeres the Encrypted Text:\n" + encryptedText;
+    	this.encrypted = encryptedText;
     }
 
     /**
