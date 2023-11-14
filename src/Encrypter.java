@@ -81,6 +81,14 @@ public class Encrypter {
     private static String readFile(String filePath) throws Exception {
         String message = "";
         //TODO: Read file from filePath
+        try (Scanner scanner = new Scanner(new File(filePath))) {
+            while (scanner.hasNextLine()) {
+                message += scanner.nextLine() + "\n";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new Exception("Error reading file");
+        }
         return message;
     }
 
@@ -89,9 +97,13 @@ public class Encrypter {
      *
      * @param data     the data to be written to the file
      * @param filePath the path to the file where the data will be written
+     * @throws IOException 
      */
-    private static void writeFile(String data, String filePath) {
+    private static void writeFile(String data, String filePath) throws IOException {
         //TODO: Write to filePath
+    	 try (FileWriter writer = new FileWriter(filePath)) {
+    	        writer.write(data);
+    	    }
     }
 
     /**
