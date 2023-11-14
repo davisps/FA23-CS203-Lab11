@@ -58,6 +58,17 @@ public class Encrypter {
      */
     public void decrypt(String messageFilePath, String decryptedFilePath) throws Exception {
         //TODO: Call the read method, decrypt the file contents, and then write to new file
+    	String encryptedtext = readFile(messageFilePath).toLowerCase();
+        String decryptedText = "";
+        for (char c : encryptedtext.toCharArray()) {
+            if (Character.isLetter(c)) {
+                char decryptedChar = (char) ((c - shift - 'a' + 26) % 26 + 'a');
+                decryptedText += decryptedChar;
+            } else {
+                decryptedText += c;
+            }
+        }
+        writeFile(decryptedText, decryptedFilePath);
     }
 
     /**
